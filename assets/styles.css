@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=B612:wght@400;700&display=swap');
+
+/* CareerPilot tokens: aeronautical-chart palette.
+   Magenta is reserved for the route: primary actions, the gauge needle, the roadmap line. */
+:root {
+    --cp-paper: #F3F6F4;
+    --cp-surface: #FFFFFF;
+    --cp-ink: #14233C;
+    --cp-ink-2: #4A5868;
+    --cp-line: #CFD8D3;
+    --cp-track: #E3E9E5;
+    --cp-route: #A3195B;
+    --cp-route-soft: #F7E6EE;
+    --cp-airway: #2C6E9B;
+    --cp-airway-soft: #E4EEF5;
+    --cp-good: #2F7D57;
+    --cp-good-soft: #E2F0E8;
+    --cp-caution: #9A6412;
+    --cp-caution-soft: #FBEFD9;
+    --cp-display: 'B612', 'Verdana', sans-serif;
+    --cp-body: 'Atkinson Hyperlegible', 'Segoe UI', sans-serif;
+}
+
+/* ---------------------------------------------------------------- app frame */
+
+[data-testid="stMainBlockContainer"] {
+    max-width: 1120px;
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+}
+
+:focus-visible {
+    outline: 3px solid var(--cp-airway) !important;
+    outline-offset: 2px;
+}
+
+.stButton button, .stFormSubmitButton button, [data-testid="stPageLink"] a {
+    font-weight: 700;
+    min-height: 44px;
+}
+
+[data-testid="stPageLink"] a {
+    border: 1px solid var(--cp-line);
+    border-radius: 6px;
+    background: var(--cp-surface);
+    justify-content: center;
+}
+[data-testid="stPageLink"] a:hover { border-color: var(--cp-route); }
+
+[data-testid="stFileUploaderDropzone"] {
+    border: 1.5px dashed var(--cp-line);
+    background: var(--cp-surface);
+}
+
+.stTabs [data-baseweb="tab"] {
+    font-family: var(--cp-display);
+    font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------------- page header */
+
+.cp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cp-line);
+}
+
+.cp-title {
+    font-family: var(--cp-display);
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--cp-ink);
+    margin: 0 0 0.4rem;
+    padding: 0;
+}
+
+.cp-lede {
+    font-family: var(--cp-body);
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: var(--cp-ink-2);
+    max-width: 62ch;
+    margin: 0;
+}
+
+.cp-mode {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--cp-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--cp-ink-2);
+    border: 1px solid var(--cp-line);
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    background: var(--cp-surface);
+    white-space: nowrap;
+}
+
+.cp-mode::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--cp-ink-2);
+}
+
+.cp-mode--ai { color: var(--cp-good); border-color: var(--cp-good); }
+.cp-mode--ai::before { background: var(--cp-good); border-color: var(--cp-good); }
+
+.cp-section { margin: 0.5rem 0 0.25rem; }
+
+.cp-section-title {
+    font-family: var(--cp-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cp-ink);
+    margin: 0;
+    padding: 0;
+}
+
+.cp-section-note {
+    font-family: var(--cp-body);
+    color: var(--cp-ink-2);
+    font-size: 0.95rem;
+    margin: 0.2rem 0 0;
+}
+
+.cp-source {
+    font-family: var(--cp-body);
+    font-size: 0.9rem;
+    color: var(--cp-ink-2);
+    margin: 0;
+    padding-left: 0.75rem;
+    border-left: 3px solid var(--cp-line);
+}
+
+.cp-summary {
+    font-family: var(--cp-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--cp-ink);
+    max-width: 68ch;
+    margin: 0;
+}
+
+.cp-muted {
+    font-family: var(--cp-body);
+    color: var(--cp-ink-2);
+    margin: 0.25rem 0;
+}
+
+/* ---------------------------------------------------------------- empty state */
+
+.cp-empty {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.75rem 1.5rem;
+    border: 1.5px dashed var(--cp-line);
+    border-radius: 6px;
+    background: var(--cp-surface);
+}
+
+.cp-empty-mark { width: 48px; height: 48px; flex-shrink: 0; }
+
+.cp-empty-title {
+    font-family: var(--cp-display);
+    font-weight: 700;
+    color: var(--cp-ink);
+    margin: 0 0 0.25rem;
+}
+
+.cp-empty-body {
+    font-family: var(--cp-body);
+    color: var(--cp-ink-2);
+    margin: 0;
+    max-width: 60ch;
+}
+
+/* ---------------------------------------------------------------- gauges */
+
+.cp-gauge {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cp-dial { position: relative; width: 100%; }
+.cp-gauge--lg .cp-dial { max-width: 260px; }
+.cp-gauge--sm .cp-dial { max-width: 168px; }
+.cp-dial-art { display: block; width: 100%; height: auto; }
+
+/* Sits in the dial's open bottom, below the hub. */
+.cp-dial-number {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2%;
+    font-family: var(--cp-display);
+    font-weight: 700;
+    color: var(--cp-ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+.cp-gauge--lg .cp-dial-number { font-size: 3rem; }
+.cp-gauge--sm .cp-dial-number { font-size: 2rem; }
+.cp-dial-number--empty { color: var(--cp-line); font-weight: 400; }
+
+.cp-gauge figcaption { display: flex; flex-direction: column; gap: 0.15rem; margin-top: 0.1rem; }
+
+.cp-gauge-label {
+    font-family: var(--cp-display);
+    font-weight: 700;
+    color: var(--cp-ink);
+    font-size: 1rem;
+}
+
+.cp-gauge-band {
+    font-family: var(--cp-body);
+    font-size: 0.9rem;
+    color: var(--cp-ink-2);
+    max-width: 28ch;
+}
+.cp-gauge-band--strong { color: var(--cp-good); }
+.cp-gauge-band--fair { color: var(--cp-airway); }
+.cp-gauge-band--weak { color: var(--cp-caution); }
+
+.cp-gauge-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 1.25rem 1rem 1rem;
+    background: var(--cp-surface);
+    border: 1px solid var(--cp-line);
+    border-radius: 6px;
+}
+
+
+/* ---------------------------------------------------------------- breakdown bars */
+
+.cp-bars { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 1rem; }
+
+.cp-bar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--cp-display);
+    color: var(--cp-ink);
+}
+.cp-bar-name { font-weight: 700; font-size: 0.95rem; }
+.cp-bar-value { font-weight: 700; font-size: 1rem; font-variant-numeric: tabular-nums; }
+.cp-bar-max { color: var(--cp-ink-2); font-weight: 400; }
+
+.cp-bar-track {
+    height: 8px;
+    background: var(--cp-track);
+    border-radius: 4px;
+    margin: 0.35rem 0 0.3rem;
+    overflow: hidden;
+}
+.cp-bar-fill { height: 100%; border-radius: 4px; }
+.cp-bar-fill--strong { background: var(--cp-good); }
+.cp-bar-fill--fair { background: var(--cp-airway); }
+.cp-bar-fill--weak { background: var(--cp-caution); }
+
+.cp-bar-note { font-family: var(--cp-body); font-size: 0.88rem; color: var(--cp-ink-2); margin: 0; }
+
+/* ---------------------------------------------------------------- chips & lists */
+
+/* Streamlit's markdown styles indent lists; these components handle their own markers. */
+ul.cp-chips, ul.cp-list, ul.cp-bars, ol.cp-route { margin-left: 0 !important; padding-left: 0 !important; }
+.cp-chips + .cp-section, .cp-list + .cp-section, .cp-muted + .cp-section, .cp-summary + .cp-section { margin-top: 1.5rem; }
+
+.cp-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.5rem 0 0; padding: 0; }
+
+.cp-chip {
+    font-family: var(--cp-body);
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 0.28rem 0.75rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--cp-line);
+    background: var(--cp-surface);
+    color: var(--cp-ink);
+    margin: 0;
+}
+.cp-chip--match { background: var(--cp-good-soft); border-color: var(--cp-good-soft); color: #1F5A3D; }
+/* Missing items use a dashed outline so the difference does not rely on colour. */
+.cp-chip--missing { border-style: dashed; border-color: var(--cp-caution); color: #7A4E0C; background: var(--cp-surface); }
+
+.cp-list { list-style: none; margin: 0.5rem 0 0; padding: 0; display: grid; gap: 0.6rem; }
+.cp-list li {
+    font-family: var(--cp-body);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--cp-ink);
+    padding-left: 1.6rem;
+    position: relative;
+    max-width: 72ch;
+    margin: 0;
+}
+.cp-list li::before { position: absolute; left: 0; top: 0; font-family: var(--cp-display); font-weight: 700; }
+.cp-list--neutral li::before { content: "–"; color: var(--cp-ink-2); }
+.cp-list--good li::before { content: "✓"; color: var(--cp-good); }
+.cp-list--gap li::before { content: "!"; color: var(--cp-caution); left: 0.25rem; }
+.cp-list--action li::before { content: "›"; color: var(--cp-route); font-size: 1.2rem; line-height: 1.2; }
+
+.cp-quote {
+    font-family: var(--cp-body);
+    margin: 0.5rem 0 0;
+    padding: 0.5rem 0.9rem;
+    border-left: 3px solid var(--cp-airway);
+    background: var(--cp-airway-soft);
+    color: var(--cp-ink);
+    border-radius: 0 4px 4px 0;
+    max-width: 72ch;
+}
+
+.cp-pill {
+    font-family: var(--cp-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--cp-line);
+    color: var(--cp-ink-2);
+}
+.cp-pill--high { border-color: var(--cp-route); color: var(--cp-route); }
+
+/* ---------------------------------------------------------------- interview briefing */
+
+.cp-briefing {
+    background: var(--cp-surface);
+    border: 1px solid var(--cp-line);
+    border-left: 4px solid var(--cp-route);
+    border-radius: 6px;
+    padding: 1.4rem 1.5rem 1.25rem;
+}
+
+.cp-briefing-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 0.75rem; }
+
+.cp-briefing-question {
+    font-family: var(--cp-display);
+    font-size: 1.35rem;
+    line-height: 1.45;
+    color: var(--cp-ink);
+    margin: 0 0 1rem;
+    max-width: 60ch;
+}
+
+/* ---------------------------------------------------------------- roadmap route */
+
+.cp-route { list-style: none; margin: 0.75rem 0 0; padding: 0; position: relative; }
+
+.cp-waypoint { position: relative; display: flex; gap: 1.1rem; padding-bottom: 1.6rem; margin: 0; }
+
+/* The route line runs between markers. */
+.cp-waypoint::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 36px;
+    bottom: 0;
+    border-left: 3px solid var(--cp-route);
+}
+.cp-waypoint--dest::before { display: none; }
+.cp-waypoint--dest { padding-bottom: 0; }
+
+.cp-wp-marker {
+    flex-shrink: 0;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    border: 3px solid var(--cp-route);
+    background: var(--cp-surface);
+    color: var(--cp-route);
+    font-family: var(--cp-display);
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+}
+.cp-waypoint--dest .cp-wp-marker { background: var(--cp-route); }
+
+.cp-wp-meta {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: var(--cp-display);
+    font-size: 0.85rem;
+    color: var(--cp-ink-2);
+    margin: 0.45rem 0 0.2rem;
+}
+
+.cp-wp-title {
+    font-family: var(--cp-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cp-ink);
+    margin: 0 0 0.25rem;
+    padding: 0;
+}
+
+.cp-wp-text { font-family: var(--cp-body); color: var(--cp-ink); margin: 0; max-width: 64ch; line-height: 1.55; }
+
+/* ---------------------------------------------------------------- overview checklist */
+
+.cp-step { display: flex; gap: 0.9rem; align-items: flex-start; }
+
+.cp-step-marker {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--cp-display);
+    font-weight: 700;
+    border: 2px solid var(--cp-ink-2);
+    color: var(--cp-ink-2);
+}
+.cp-step--done .cp-step-marker { background: var(--cp-good); border-color: var(--cp-good); color: #fff; }
+
+.cp-step-title { font-family: var(--cp-display); font-weight: 700; color: var(--cp-ink); margin: 0.2rem 0 0.15rem; }
+
+.cp-step-status {
+    font-family: var(--cp-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--cp-ink-2);
+    margin-left: 0.4rem;
+}
+.cp-step--done .cp-step-status { color: var(--cp-good); }
+
+.cp-step-detail { font-family: var(--cp-body); color: var(--cp-ink-2); margin: 0; }
+
+/* ---------------------------------------------------------------- responsive & motion */
+
+@media (max-width: 760px) {
+    [data-testid="stMainBlockContainer"] { padding-left: 1rem; padding-right: 1rem; padding-top: 4.5rem; }
+    .cp-header { flex-direction: column; gap: 0.75rem; }
+    .cp-title { font-size: 1.65rem; }
+    .cp-gauge-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cp-briefing-question { font-size: 1.15rem; }
+}

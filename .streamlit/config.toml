@@ -1,0 +1,22 @@
+[theme]
+base = "light"
+primaryColor = "#A3195B"
+backgroundColor = "#F3F6F4"
+secondaryBackgroundColor = "#E8EEEA"
+textColor = "#14233C"
+linkColor = "#2C6E9B"
+borderColor = "#CFD8D3"
+showWidgetBorder = true
+baseRadius = "6px"
+buttonRadius = "6px"
+font = "Atkinson Hyperlegible:https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+headingFont = "B612:https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap"
+greenColor = "#2F7D57"
+blueColor = "#2C6E9B"
+orangeColor = "#9A6412"
+
+[client]
+toolbarMode = "minimal"
+
+[server]
+maxUploadSize = 5

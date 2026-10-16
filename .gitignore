@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.DS_Store
+.pytest_cache/
+.streamlit/secrets.toml
+*.log
+*.sqlite3
+.coverage
+htmlcov/
+.playwright-mcp/
